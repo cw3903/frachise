@@ -241,7 +241,8 @@
         const emailDomain = form.emailDomain.value.trim();
         const email = `${emailId}@${emailDomain}`;
         const region = form.region.value.trim();
-        const hasStore = form.storeOption.value;
+        const storeOption = form.querySelector('input[name="storeOption"]:checked');
+        const hasStore = storeOption ? storeOption.value : "";
         const storeAddress = form.storeAddress?.value.trim() || "";
         const size = form.size.value.trim();
         const capital = form.capital.value.trim();
