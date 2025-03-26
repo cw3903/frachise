@@ -233,8 +233,18 @@
         const message = form.message.value.trim();
         const industries = Array.from(selectedIndustries);
 
-        if (!name || !phone || !email || !region || !size || !capital || !industries.length) {
-          alert("필수 항목을 모두 입력해 주세요.");
+        const missingFields = [];
+        if (!industries.length) missingFields.push("관심 업종");
+        if (!name) missingFields.push("이름");
+        if (!form.phone2.value.trim() || !form.phone3.value.trim()) missingFields.push("연락처");
+        if (!form.emailId.value.trim() || !form.emailDomain.value.trim()) missingFields.push("이메일");
+        if (!region) missingFields.push("희망 창업 지역");
+        if (!size) missingFields.push("예상 평수");
+        if (!capital) missingFields.push("예상 창업 자본");
+      
+
+        if (missingFields.length) {
+          alert("다음 항목을 입력해 주세요: " + missingFields.join(', '));
           return;
         }
 
