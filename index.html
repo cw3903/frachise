@@ -223,8 +223,13 @@
         e.preventDefault();
 
         const name = form.name.value.trim();
-        const phone = `${form.phone1.value.trim()}-${form.phone2.value.trim()}-${form.phone3.value.trim()}`;
-        const email = `${form.emailId.value.trim()}@${form.emailDomain.value.trim()}`;
+        const phone1 = form.phone1.value.trim();
+        const phone2 = form.phone2.value.trim();
+        const phone3 = form.phone3.value.trim();
+        const phone = `${phone1}-${phone2}-${phone3}`;
+        const emailId = form.emailId.value.trim();
+        const emailDomain = form.emailDomain.value.trim();
+        const email = `${emailId}@${emailDomain}`;
         const region = form.region.value.trim();
         const hasStore = form.storeOption.value;
         const storeAddress = form.storeAddress?.value.trim() || "";
