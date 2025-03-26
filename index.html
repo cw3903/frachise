@@ -238,8 +238,9 @@
           return;
         }
 
+        const date = new Date().toLocaleString("ko-KR", { timeZone: "Asia/Seoul" });
         const payload = {
-          name, phone, email, region, hasStore, storeAddress, size, capital, industries: industries.join(', '), message
+          name, phone, email, region, hasStore, storeAddress, size, capital, industries: industries.join(', '), message, date
         };
 
         try {
