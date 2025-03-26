@@ -233,18 +233,55 @@
 
       const form = document.querySelector("form");
       if (form) {
-        form.addEventListener("submit", function (e) {
-          if (!validateForm(e)) return;
-          e.preventDefault();
-          const selected = Array.from(selectedIndustries);
-          alert("신청이 완료되었습니다.\n선택 업종: " +
-            (selected.length > 0 ? selected.join(', ') : '선택안됨') +
-            "\n담당자가 곧 연락드릴게요!");
-          form.reset();
-          document.querySelectorAll('.industry-option.selected').forEach(el => el.classList.remove('selected'));
-          selectedIndustries.clear();
-        });
-      }
+        form.addEventListener("submit", async function (e) {
+  if (!validateForm(e)) return;
+  e.preventDefault();
+
+  const name = document.querySelector('input[placeholder="홍길동"]').value.trim();
+  const phone2 = document.querySelectorAll('input[type="text"]')[0].value.trim();
+  const phone3 = document.querySelectorAll('input[type="text"]')[1].value.trim();
+  const phone = `010-${phone2}-${phone3}`;
+  const emailId = document.querySelector('input[placeholder="example"]').value.trim();
+  const emailDomain = document.querySelector('input[placeholder="domain.com"]').value.trim();
+  const email = `${emailId}@${emailDomain}`;
+  const region = document.querySelector('input[placeholder^="예: 서울 강남구"]').value.trim();
+  const storeOption = document.querySelector('input[name="storeOption"]:checked')?.value || "";
+  const storeAddress = document.querySelector('#storeAddressInput input')?.value.trim() || "";
+  const size = document.querySelector('input[placeholder^="예: 20"]').value.trim();
+  const capital = document.querySelector('select option:checked').value.trim();
+  const message = document.querySelector('textarea').value.trim();
+  const industries = Array.from(document.querySelectorAll('.industry-option.selected')).map(el => el.dataset.value);
+
+  const payload = {
+    name,
+    phone,
+    email,
+    region,
+    hasStore: storeOption,
+    storeAddress,
+    size,
+    capital,
+    industries: industries.join(', '),
+    message
+  };
+
+  try {
+    await fetch("https://sheetdb.io/api/v1/zlq5ei9hruhec", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ data: payload })
+    });
+    alert("신청이 완료되었습니다.\n선택 업종: " +
+      (industries.length > 0 ? industries.join(', ') : '선택안됨') +
+      "\n담당자가 곧 연락드릴게요!");
+    form.reset();
+    document.querySelectorAll('.industry-option.selected').forEach(el => el.classList.remove('selected'));
+    selectedIndustries.clear();
+  } catch (error) {
+    alert("데이터 전송 중 오류가 발생했습니다. 다시 시도해주세요.");
+  }
+});
+
 
       document.querySelectorAll('input[name="storeOption"]').forEach(radio => {
         radio.addEventListener('change', () => {
