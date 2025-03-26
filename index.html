@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>프랜차이즈 비교 견적</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Pretendard', sans-serif;
+    }
+    .industry-option {
+      border: 1.5px solid #d1d5db;
+      border-radius: 0.75rem;
+      padding: 0.25rem;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s ease-in-out;
+      width: 70px;
+      height: 70px;
+      margin: 2.5px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+    }
+    .industry-option:hover {
+      background-color: #e0f2fe;
+    }
+    .industry-option.selected {
+      background-color: #3b82f6;
+      color: white;
+    }
+    .industry-option img {
+      width: 24px;
+      height: 24px;
+      margin-bottom: 0.25rem;
+    }
+    .industry-option span {
+      font-size: 0.75rem;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+  <!-- 1페이지: 이미지 -->
+  <section class="w-full h-[600px] flex items-center justify-center bg-gray-100">
+    <img src="https://i.postimg.cc/PxNjYznZ/20-png.png" alt="프랜차이즈 비교" class="w-1/2">
+  </section>
+
+  <!-- 2페이지: 관심 업종 선택 -->
+  <section class="w-full max-w-[1000px] mx-auto px-6 pt-8 pb-4 bg-white">
+    <h2 class="text-2xl font-bold mb-2 text-center">관심 업종 선택<span class="text-red-500 ml-1">*</span></h2>
+    <p class="text-sm text-center text-gray-500 mb-6">(2개 이상 선택 가능)</p>
+    <div id="industry-grid" class="flex flex-wrap justify-center gap-[5px] text-center mx-auto" style="max-width: 620px;">
+      <div class="industry-option" data-value="커피">
+        <img src="coffee.png" alt="커피">
+        <span>커피</span>
+      </div>
+      <div class="industry-option" data-value="치킨">
+        <img src="chicken.png" alt="치킨">
+        <span>치킨</span>
+      </div>
+      <div class="industry-option" data-value="피자">
+        <img src="pizza.png" alt="피자">
+        <span>피자</span>
+      </div>
+      <div class="industry-option" data-value="분식">
+        <img src="ddeok.png" alt="분식">
+        <span>분식</span>
+      </div>
+      <div class="industry-option" data-value="양식">
+        <img src="pasta.png" alt="양식">
+        <span>양식</span>
+      </div>
+      <div class="industry-option" data-value="고기">
+        <img src="meet.png" alt="고기">
+        <span>고기</span>
+      </div>
+      <div class="industry-option" data-value="디저트">
+        <img src="dessert.png" alt="디저트">
+        <span>디저트</span>
+      </div>
+      <div class="industry-option" data-value="그외">
+        <img src="etc.png" alt="그외">
+        <span>그외</span>
+      </div>
+      <div class="industry-option" data-value="저가커피">
+        <img src="cheap coffee.png" alt="저가커피">
+        <span>저가커피</span>
+      </div>
+      <div class="industry-option" data-value="샐러드">
+        <img src="salad.png" alt="샐러드">
+        <span>샐러드</span>
+      </div>
+      <div class="industry-option" data-value="마라탕">
+        <img src="malatang.png" alt="마라탕">
+        <span>마라탕</span>
+      </div>
+      <div class="industry-option" data-value="주점">
+        <img src="https://cdn-icons-png.flaticon.com/512/2738/2738730.png" alt="주점">
+        <span>주점</span>
+      </div>
+      <div class="industry-option" data-value="중식">
+        <img src="https://cdn-icons-png.flaticon.com/512/5787/5787016.png" alt="중식">
+        <span>중식</span>
+      </div>
+      <div class="industry-option" data-value="한식">
+        <img src="https://cdn-icons-png.flaticon.com/512/5787/5787024.png" alt="한식">
+        <span>한식</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3페이지: 신청 폼 -->
+  <section class="w-full max-w-xl mx-auto px-6 pt-4 pb-16 bg-gray-100">
+    <form class="bg-white rounded-2xl shadow-xl p-8 space-y-6" onsubmit="return validateForm(event)">
+      <h2 class="text-2xl font-bold text-center">맞춤형 프랜차이즈 조건 받아보기</h2>
+      
+      <div>
+        <label class="block mb-1 text-sm font-medium">이름<span class="text-red-500">*</span></label>
+        <input type="text" placeholder="홍길동" class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
+      </div>
+      <div>
+        <label class="block mb-1 text-sm font-medium">연락처<span class="text-red-500">*</span></label>
+        <div class="flex items-center space-x-2">
+          <div class="relative w-1/4">
+            <select class="w-full border border-gray-300 rounded-xl px-4 py-3 text-left bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 pr-6 appearance-none">
+              <option value="010">010</option>
+              <option value="011">011</option>
+              <option value="016">016</option>
+              <option value="017">017</option>
+              <option value="018">018</option>
+              <option value="019">019</option>
+            </select>
+            <div class="pointer-events-none absolute inset-y-0 right-2 flex items-center text-gray-400 text-sm">∨</div>
+          </div>
+          <span>-</span>
+          <input type="text" maxlength="4" pattern="[0-9]{0,4}" class="w-1/4 border border-gray-300 rounded-xl px-4 py-3 text-center focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          <span>-</span>
+          <input type="text" maxlength="4" pattern="[0-9]{0,4}" class="w-1/4 border border-gray-300 rounded-xl px-4 py-3 text-center focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        </div>
+      </div>
+      <div>
+        <label class="block mb-1 text-sm font-medium">이메일<span class="text-red-500">*</span></label>
+        <div class="flex space-x-2">
+          <input type="text" placeholder="example" class="w-1/2 border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <span class="flex items-center">@</span>
+          <input type="text" placeholder="domain.com" class="w-1/2 border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
+      </div>
+      <div>
+        <label class="block mb-1 text-sm font-medium">희망 창업 지역<span class="text-red-500">*</span></label>
+        <input type="text" placeholder="예: 서울 강남구 대치동" class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
+      </div>
+      <div>
+        <label class="block mb-1 text-sm font-medium">입점 희망 점포<span class="text-gray-400 text-xs ml-1">(선택)</span></label>
+        <div class="flex items-center space-x-4">
+          <label class="flex items-center">
+            <input type="radio" name="storeOption" value="있음" class="mr-2"> 있음
+          </label>
+          <label class="flex items-center">
+            <input type="radio" name="storeOption" value="없음" class="mr-2"> 없음
+          </label>
+        </div>
+        <div id="storeAddressInput" class="mt-4 hidden">
+          <input type="text" placeholder="점포 주소를 입력해주세요" class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
+      </div>
+      <div>
+        <label class="block mb-1 text-sm font-medium">예상 평수<span class="text-red-500">*</span></label>
+<div class="flex items-center space-x-2">
+  <input type="text" placeholder="예: 20" class="w-24 border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
+  <span class="text-sm">평</span>
+</div>
+      </div>
+      <div>
+        <label class="block mb-1 text-sm font-medium">예상 창업 자본<span class="text-red-500">*</span></label>
+        <select class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <option value="">선택해주세요</option>
+          <option>5천만 원 미만</option>
+          <option>5천 ~ 1억</option>
+          <option>1억 이상</option>
+        </select>
+      </div>
+      <div>
+        <label class="block mb-1 text-sm font-medium">추가 정보 입력<span class="text-gray-400 text-xs ml-1">(선택)</span></label>
+        <textarea rows="4" placeholder="원하는 업종, 지역, 창업 관련 문의 등을 자유롭게 작성해주세요." class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+      </div>
+      <div class="flex items-center space-x-2">
+        <input type="checkbox" id="agree" class="w-4 h-4">
+        <label for="agree">개인정보 수집 및 활용에 동의합니다. (필수)<span class="text-red-500 ml-1">*</span></label>
+      </div>
+      <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-xl hover:bg-blue-700 transition">
+        맞춤 조건 받아보기
+      </button>
+    </form>
+  </section>
+
+  <script>
+    function validateForm(e) {
+      const name = document.querySelector('input[placeholder="홍길동"]')?.value.trim();
+      const phone2 = document.querySelectorAll('input[type="text"]')[0]?.value.trim();
+      const phone3 = document.querySelectorAll('input[type="text"]')[1]?.value.trim();
+      const region = document.querySelector('input[placeholder="예: 서울 강남구"]')?.value.trim();
+      const capital = document.querySelector('select option:checked')?.value.trim();
+      const agree = document.querySelector('#agree')?.checked;
+      const industrySelected = document.querySelectorAll('.industry-option.selected')?.length;
+
+      if (!name || !phone2 || !phone3 || region === '' || capital === '' || !agree || industrySelected === 0) {
+        alert('이름, 연락처, 희망 창업 지역, 예상 창업 자본, 관심 업종은 필수 입력 항목입니다.');
+        e.preventDefault();
+        return false;
+      }
+      return true;
+    }
+
+    window.addEventListener("DOMContentLoaded", () => {
+      const selectedIndustries = new Set();
+
+      document.querySelectorAll('.industry-option').forEach(option => {
+        option.addEventListener('click', () => {
+          const value = option.dataset.value;
+          option.classList.toggle('selected');
+          if (selectedIndustries.has(value)) {
+            selectedIndustries.delete(value);
+          } else {
+            selectedIndustries.add(value);
+          }
+        });
+      });
+
+      const form = document.querySelector("form");
+      if (form) {
+        form.addEventListener("submit", function (e) {
+          if (!validateForm(e)) return;
+          e.preventDefault();
+          const selected = Array.from(selectedIndustries);
+          alert("신청이 완료되었습니다.\n선택 업종: " +
+            (selected.length > 0 ? selected.join(', ') : '선택안됨') +
+            "\n담당자가 곧 연락드릴게요!");
+          form.reset();
+          document.querySelectorAll('.industry-option.selected').forEach(el => el.classList.remove('selected'));
+          selectedIndustries.clear();
+        });
+      }
+
+      document.querySelectorAll('input[name="storeOption"]').forEach(radio => {
+        radio.addEventListener('change', () => {
+          const storeAddress = document.getElementById('storeAddressInput');
+          if (radio.value === '있음' && radio.checked) {
+            storeAddress.classList.remove('hidden');
+          } else if (radio.value === '없음' && radio.checked) {
+            storeAddress.classList.add('hidden');
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
