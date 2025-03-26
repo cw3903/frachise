@@ -1,1 +1,288 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>프랜차이즈 비교 견적</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Pretendard', sans-serif;
+    }
+    .industry-option {
+      border: 1.5px solid #d1d5db;
+      border-radius: 0.75rem;
+      padding: 0.25rem;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s ease-in-out;
+      width: 70px;
+      height: 70px;
+      margin: 2.5px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+    }
+    .industry-option:hover {
+      background-color: #e0f2fe;
+    }
+    .industry-option.selected {
+      background-color: #3b82f6;
+      color: white;
+    }
+    .industry-option img {
+      width: 24px;
+      height: 24px;
+      margin-bottom: 0.25rem;
+    }
+    .industry-option span {
+      font-size: 0.75rem;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+  <!-- 1페이지: 이미지 -->
+  <section class="w-full px-4 pt-6 pb-0 flex items-center justify-center bg-gray-100">
+  <img src="https://i.imgur.com/fyhZ0zu.png" alt="프랜차이즈 비교" class="w-full max-w-7xl h-auto sm:max-w-3xl">
+</section>
 
+  <!-- 2페이지: 관심 업종 선택 -->
+  <section class="w-full max-w-[1000px] mx-auto px-6 pt-8 pb-4 bg-white">
+    <h2 class="text-2xl font-bold mb-2 text-center">관심 업종 선택<span class="text-red-500 ml-1">*</span></h2>
+    <p class="text-sm text-center text-gray-500 mb-6">(2개 이상 선택 가능)</p>
+    <div id="industry-grid" class="flex flex-wrap justify-center gap-[5px] text-center mx-auto" style="max-width: 620px;">
+      <div class="industry-option" data-value="커피">
+        <img src="https://cdn-icons-png.flaticon.com/128/1047/1047462.png" alt="커피">
+        <span>커피</span>
+      </div>
+      <div class="industry-option" data-value="치킨">
+        <img src="https://cdn-icons-png.flaticon.com/128/821/821023.png" alt="치킨">
+        <span>치킨</span>
+      </div>
+      <div class="industry-option" data-value="피자">
+        <img src="https://cdn-icons-png.flaticon.com/128/6978/6978255.png" alt="피자">
+        <span>피자</span>
+      </div>
+      <div class="industry-option" data-value="분식">
+        <img src="https://cdn-icons-png.flaticon.com/128/9745/9745081.png" alt="분식">
+        <span>분식</span>
+      </div>
+      <div class="industry-option" data-value="양식">
+        <img src="https://cdn-icons-png.flaticon.com/128/4465/4465494.png" alt="양식">
+        <span>양식</span>
+      </div>
+      <div class="industry-option" data-value="고기">
+        <img src="https://cdn-icons-png.flaticon.com/128/2339/2339945.png" alt="고기">
+        <span>고기</span>
+      </div>
+      <div class="industry-option" data-value="한식">
+        <img src="https://cdn-icons-png.flaticon.com/128/4480/4480784.png" alt="한식">
+        <span>한식</span>
+      </div>
+      <div class="industry-option" data-value="일식">
+        <img src="https://cdn-icons-png.flaticon.com/128/2714/2714023.png" alt="일식">
+        <span>일식</span>
+      </div>
+      <div class="industry-option" data-value="저가커피">
+        <img src="https://cdn-icons-png.flaticon.com/128/5194/5194358.png" alt="저가커피">
+        <span>저가커피</span>
+      </div>
+      <div class="industry-option" data-value="샐러드">
+        <img src="https://cdn-icons-png.flaticon.com/128/2515/2515183.png" alt="샐러드">
+        <span>샐러드</span>
+      </div>
+      <div class="industry-option" data-value="마라탕">
+        <img src="https://cdn-icons-png.flaticon.com/128/11322/11322208.png" alt="마라탕">
+        <span>마라탕</span>
+      </div>
+      <div class="industry-option" data-value="주점">
+        <img src="https://cdn-icons-png.flaticon.com/128/931/931949.png" alt="주점">
+        <span>주점</span>
+      </div>
+      <div class="industry-option" data-value="중식">
+        <img src="https://cdn-icons-png.flaticon.com/128/13459/13459869.png" alt="중식">
+        <span>중식</span>
+      </div>
+      <div class="industry-option" data-value="국밥">
+        <img src="https://cdn-icons-png.flaticon.com/128/13459/13459839.png" alt="국밥">
+        <span>국밥</span>
+      </div>
+      <div class="industry-option" data-value="디저트">
+        <img src="https://cdn-icons-png.flaticon.com/128/4465/4465242.png" alt="디저트">
+        <span>디저트</span>
+      </div>
+      <div class="industry-option" data-value="그 외">
+        <img src="https://cdn-icons-png.flaticon.com/128/1828/1828919.png" alt="그 외">
+        <span>그 외</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3페이지: 신청 폼 -->
+  <section class="w-full max-w-xl mx-auto px-6 pt-4 pb-16 bg-gray-100">
+    <form class="bg-white rounded-2xl shadow-xl p-8 space-y-6">
+      <h2 class="text-2xl font-bold text-center">맞춤형 프랜차이즈 조건 받아보기</h2>
+      <div>
+        <label class="block mb-1 text-sm font-medium">이름<span class="text-red-500">*</span></label>
+        <input type="text" name="name" placeholder="홍길동" class="w-full border border-gray-300 rounded-xl px-4 py-3">
+      </div>
+      <div>
+        <label class="block mb-1 text-sm font-medium">연락처<span class="text-red-500">*</span></label>
+        <div class="flex items-center space-x-2">
+          <select name="phone1" class="w-1/4 border border-gray-300 rounded-xl px-4 py-3 bg-white">
+            <option value="010">010</option>
+            <option value="011">011</option>
+            <option value="016">016</option>
+            <option value="017">017</option>
+            <option value="018">018</option>
+            <option value="019">019</option>
+          </select>
+          <span>-</span>
+          <input type="text" name="phone2" maxlength="4" class="w-1/4 border border-gray-300 rounded-xl px-4 py-3 text-center">
+          <span>-</span>
+          <input type="text" name="phone3" maxlength="4" class="w-1/4 border border-gray-300 rounded-xl px-4 py-3 text-center">
+        </div>
+      </div>
+      <div>
+        <label class="block mb-1 text-sm font-medium">이메일<span class="text-red-500">*</span></label>
+        <div class="flex space-x-2">
+          <input type="text" name="emailId" placeholder="example" class="w-1/2 border border-gray-300 rounded-xl px-4 py-3">
+          <span class="flex items-center">@</span>
+          <input type="text" name="emailDomain" placeholder="domain.com" class="w-1/2 border border-gray-300 rounded-xl px-4 py-3">
+        </div>
+      </div>
+      <div>
+        <label class="block mb-1 text-sm font-medium">희망 창업 지역<span class="text-red-500">*</span></label>
+        <input type="text" name="region" placeholder="예: 서울 강남구" class="w-full border border-gray-300 rounded-xl px-4 py-3">
+      </div>
+      <div>
+        <label class="block mb-1 text-sm font-medium">입점 희망 점포<span class="text-gray-400 text-xs ml-1">(선택)</span></label>
+        <div class="flex items-center space-x-4">
+          <label class="flex items-center">
+            <input type="radio" name="storeOption" value="있음" class="mr-2"> 있음
+          </label>
+          <label class="flex items-center">
+            <input type="radio" name="storeOption" value="없음" class="mr-2"> 없음
+          </label>
+        </div>
+        <div id="storeAddressInput" class="mt-4 hidden">
+          <input type="text" name="storeAddress" placeholder="점포 주소를 입력해주세요" class="w-full border border-gray-300 rounded-xl px-4 py-3">
+        </div>
+      </div>
+      <div>
+        <label class="block mb-1 text-sm font-medium">예상 평수<span class="text-red-500">*</span></label>
+        <div class="flex items-center space-x-2">
+          <input type="text" name="size" placeholder="예: 20" class="w-24 border border-gray-300 rounded-xl px-4 py-3">
+          <span class="text-sm">평</span>
+        </div>
+      </div>
+      <div>
+        <label class="block mb-1 text-sm font-medium">예상 창업 자본<span class="text-red-500">*</span></label>
+        <select name="capital" class="w-full border border-gray-300 rounded-xl px-4 py-3">
+          <option value="">선택해주세요</option>
+          <option>5천만 원 미만</option>
+          <option>5천 ~ 1억</option>
+          <option>1억 이상</option>
+        </select>
+      </div>
+      <div>
+        <label class="block mb-1 text-sm font-medium">추가 정보 입력<span class="text-gray-400 text-xs ml-1">(선택)</span></label>
+        <textarea name="message" rows="4" placeholder="원하는 업종, 지역, 창업 관련 문의 등을 자유롭게 작성해주세요." class="w-full border border-gray-300 rounded-xl px-4 py-3"></textarea>
+      </div>
+      <div class="flex items-center space-x-2">
+        <input type="checkbox" id="agree" required class="w-4 h-4">
+        <label for="agree">개인정보 수집 및 활용에 동의합니다. (필수)<span class="text-red-500 ml-1">*</span></label>
+      </div>
+      <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-xl hover:bg-blue-700 transition">
+        맞춤 조건 받아보기
+      </button>
+    </form>
+  </section>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const storeRadios = document.querySelectorAll('input[name="storeOption"]');
+      const storeInput = document.getElementById('storeAddressInput');
+
+      storeRadios.forEach(radio => {
+        radio.addEventListener('change', () => {
+          storeInput.classList.toggle('hidden', radio.value !== '있음');
+        });
+      });
+
+      const selectedIndustries = new Set();
+      document.querySelectorAll('.industry-option').forEach(option => {
+        option.addEventListener('click', () => {
+          option.classList.toggle('selected');
+          const value = option.dataset.value;
+          if (selectedIndustries.has(value)) {
+            selectedIndustries.delete(value);
+          } else {
+            selectedIndustries.add(value);
+          }
+        });
+      });
+
+      const form = document.querySelector('form');
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const name = form.name.value.trim();
+        const phone1 = form.phone1.value.trim();
+        const phone2 = form.phone2.value.trim();
+        const phone3 = form.phone3.value.trim();
+        const phone = `${phone1}-${phone2}-${phone3}`;
+        const emailId = form.emailId.value.trim();
+        const emailDomain = form.emailDomain.value.trim();
+        const email = `${emailId}@${emailDomain}`;
+        const region = form.region.value.trim();
+        const hasStore = form.storeOption.value;
+        const storeAddress = form.storeAddress?.value.trim() || "";
+        const size = form.size.value.trim();
+        const capital = form.capital.value.trim();
+        const message = form.message.value.trim();
+        const industries = Array.from(selectedIndustries);
+
+        const missingFields = [];
+        if (!industries.length) missingFields.push("관심 업종");
+        if (!name) missingFields.push("이름");
+        if (!form.phone2.value.trim() || !form.phone3.value.trim()) missingFields.push("연락처");
+        if (!form.emailId.value.trim() || !form.emailDomain.value.trim()) missingFields.push("이메일");
+        if (!region) missingFields.push("희망 창업 지역");
+        if (!size) missingFields.push("예상 평수");
+        if (!capital) missingFields.push("예상 창업 자본");
+      
+
+        if (missingFields.length) {
+          alert("다음 항목을 입력해 주세요: " + missingFields.join(', '));
+          return;
+        }
+
+        const date = new Date().toLocaleString("ko-KR", { timeZone: "Asia/Seoul" });
+        const payload = {
+          name, phone, email, region, hasStore, storeAddress, size, capital, industries: industries.join(', '), message, date
+        };
+
+        try {
+          await fetch("https://sheetdb.io/api/v1/zlq5ei9hruhec", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ data: payload })
+          });
+
+          alert("신청이 완료되었습니다.\n선택 업종: " + (industries.length ? industries.join(', ') : '선택안됨'));
+          form.reset();
+          selectedIndustries.clear();
+          document.querySelectorAll('.industry-option.selected').forEach(el => el.classList.remove('selected'));
+          storeInput.classList.add('hidden');
+        } catch (err) {
+          alert("데이터 전송에 실패했습니다. 다시 시도해주세요.");
+        }
+      });
+    });
+  </script>
+</body>
+</html>
